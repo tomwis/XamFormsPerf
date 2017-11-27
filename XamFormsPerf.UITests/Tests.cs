@@ -7,6 +7,7 @@ using Xamarin.UITest.Queries;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Xml.Linq;
 
 namespace XamFormsPerf.UITests
 {
@@ -27,6 +28,7 @@ namespace XamFormsPerf.UITests
             var testTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-ffff");
             _resultsFilename = string.Format(RESULTS_FILENAME_TEMPLATE, testTime);
             _resultsAvgFilename = string.Format(RESULTS_AVERAGE_FILENAME_TEMPLATE, testTime);
+            (_formsVersion, _targetFramework) = GetFormsVersion();
         }
 
         [SetUp]
@@ -76,7 +78,9 @@ namespace XamFormsPerf.UITests
                 {
                     parts[0].Trim(), // test name
                     parts[2].Trim().Replace(" ms", ""), // time in ms
-                    _testsDate
+                    _testsDate,
+                    _formsVersion,
+                    _targetFramework
                 }));
             }
 
@@ -102,14 +106,26 @@ namespace XamFormsPerf.UITests
                 };
             }).GroupBy(t => t.Name, g => g.AvgMs).ToDictionary(k => k.Key, v => v.ToList()));
             var avgResults = tests.Select(s => new { Name = s.Key, AvgMs = s.Value.Sum() / s.Value.Count });
-            File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate}"));
 
+            var (_formsVersion, _targetFramework) = GetFormsVersion();
+
+            File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate};{_formsVersion};{_targetFramework}"));
         }
 
+        (string, string) GetFormsVersion()
+        {
+            var packagesConfigPath = $@"..\..\..\XamFormsPerf\XamFormsPerf.{_platform}\packages.config";
+            var xml = XDocument.Load(packagesConfigPath);
+            var formsPackage = xml.Root.Elements("package").FirstOrDefault(s => s.Attribute("id").Value == "Xamarin.Forms");
+            var formsVersion = formsPackage.Attribute("version").Value;
+            var targetFramework = formsPackage.Attribute("targetFramework").Value;
+            return (formsVersion, targetFramework);
+        }
+
+        readonly string _formsVersion, _targetFramework;
+        readonly string _resultsFilename, _resultsAvgFilename;
         readonly string _testsDate;
-        readonly string _resultsFilename;
-        readonly string _resultsAvgFilename;
-        const string RESULTS_HEADER = "Test name;Avg ms;Date";
+        const string RESULTS_HEADER = "Test name;Avg ms;Date;FormsVersion;TargetFramework";
         const string RESULTS_FILENAME_TEMPLATE = "results_{0}.csv";
         const string RESULTS_AVERAGE_FILENAME_TEMPLATE = "resultsAvg_{0}.csv";
     }
