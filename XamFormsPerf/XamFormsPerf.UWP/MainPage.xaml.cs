@@ -21,7 +21,7 @@ namespace XamFormsPerf.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new XamFormsPerf.App());
+            PerfLog.Measure("App Load", () => LoadApplication(new XamFormsPerf.App()));
         }
     }
 }

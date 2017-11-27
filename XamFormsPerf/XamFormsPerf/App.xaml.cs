@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using XamFormsPerf.Pages;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamFormsPerf
 {
     public partial class App : Application
@@ -13,7 +16,7 @@ namespace XamFormsPerf
         {
             InitializeComponent();
 
-            MainPage = new XamFormsPerf.MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

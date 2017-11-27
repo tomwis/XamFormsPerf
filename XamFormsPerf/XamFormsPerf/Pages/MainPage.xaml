@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamFormsPerf.Pages"
+             x:Class="XamFormsPerf.Pages.MainPage"
+             BackgroundColor="LightGray"
+             Title="Performance Tests">
+    <StackLayout x:Name="Panel">
+        <ListView x:Name="TestList"/>
+        <Label x:Name="Summary" />
+    </StackLayout>
+</ContentPage>

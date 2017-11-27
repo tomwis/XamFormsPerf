@@ -4,6 +4,7 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using System.Runtime.InteropServices;
 
 namespace XamFormsPerf.iOS
 {
@@ -22,10 +23,22 @@ namespace XamFormsPerf.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            PerfLog.MeasureStart("First Page Load");
+            PerfLog.Measure("App Init", () => global::Xamarin.Forms.Forms.Init());
+            PerfLog.Measure("App Load", () => LoadApplication(new App()));
 
             return base.FinishedLaunching(app, options);
         }
+
+        [Export("exitApp:")]
+        public NSString ExitApp(NSString value)
+        {
+            Exit(3);
+            return new NSString();
+        }
+
+
+        [DllImport("__Internal", EntryPoint = "exit")]
+        public static extern void Exit(int status);
     }
 }

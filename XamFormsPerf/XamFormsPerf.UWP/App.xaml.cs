@@ -58,7 +58,8 @@ namespace XamFormsPerf.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                Xamarin.Forms.Forms.Init(e);
+                PerfLog.MeasureStart("First Page Load");
+                PerfLog.Measure("App Init", () => Xamarin.Forms.Forms.Init(e));
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
