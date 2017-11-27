@@ -6,6 +6,7 @@ using Xamarin.UITest;
 using Xamarin.UITest.Queries;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace XamFormsPerf.UITests
 {
@@ -22,6 +23,7 @@ namespace XamFormsPerf.UITests
         {
             _platform = platform;
 
+            _testsDate = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
             var testTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-ffff");
             _resultsFilename = string.Format(RESULTS_FILENAME_TEMPLATE, testTime);
             _resultsAvgFilename = string.Format(RESULTS_AVERAGE_FILENAME_TEMPLATE, testTime);
@@ -66,14 +68,22 @@ namespace XamFormsPerf.UITests
             var lines = summary.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             List<string> entries = new List<string>();
-            entries.Add(RESULTS_HEADER);
 
             foreach (var line in lines)
             {
                 var parts = line.Split("():".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                entries.Add(string.Join(";", new[] { parts[0].Trim(), parts[2].Trim().Replace(" ms", "") }));
+                entries.Add(string.Join(";", new[] 
+                {
+                    parts[0].Trim(), // test name
+                    parts[2].Trim().Replace(" ms", ""), // time in ms
+                    _testsDate
+                }));
             }
 
+            if(!File.Exists(_resultsFilename))
+            {
+                entries.Insert(0, RESULTS_HEADER);
+            }
             File.AppendAllLines(_resultsFilename, entries);
 
             return summary;
@@ -92,13 +102,14 @@ namespace XamFormsPerf.UITests
                 };
             }).GroupBy(t => t.Name, g => g.AvgMs).ToDictionary(k => k.Key, v => v.ToList()));
             var avgResults = tests.Select(s => new { Name = s.Key, AvgMs = s.Value.Sum() / s.Value.Count });
-            File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs}"));
+            File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate}"));
 
         }
-        
+
+        readonly string _testsDate;
         readonly string _resultsFilename;
         readonly string _resultsAvgFilename;
-        const string RESULTS_HEADER = "Test name;Avg ms";
+        const string RESULTS_HEADER = "Test name;Avg ms;Date";
         const string RESULTS_FILENAME_TEMPLATE = "results_{0}.csv";
         const string RESULTS_AVERAGE_FILENAME_TEMPLATE = "resultsAvg_{0}.csv";
     }
