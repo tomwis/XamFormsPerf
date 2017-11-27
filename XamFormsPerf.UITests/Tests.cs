@@ -28,7 +28,7 @@ namespace XamFormsPerf.UITests
             var testTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-ffff");
             _resultsFilename = string.Format(RESULTS_FILENAME_TEMPLATE, testTime);
             _resultsAvgFilename = string.Format(RESULTS_AVERAGE_FILENAME_TEMPLATE, testTime);
-            (_formsVersion, _targetFramework) = GetFormsVersion();
+            (_formsVersion, _targetFramework) = GetFormsVersionAndTarget();
         }
 
         [SetUp]
@@ -107,12 +107,12 @@ namespace XamFormsPerf.UITests
             }).GroupBy(t => t.Name, g => g.AvgMs).ToDictionary(k => k.Key, v => v.ToList()));
             var avgResults = tests.Select(s => new { Name = s.Key, AvgMs = s.Value.Sum() / s.Value.Count });
 
-            var (_formsVersion, _targetFramework) = GetFormsVersion();
+            var (_formsVersion, _targetFramework) = GetFormsVersionAndTarget();
 
             File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate};{_formsVersion};{_targetFramework}"));
         }
 
-        (string, string) GetFormsVersion()
+        (string, string) GetFormsVersionAndTarget()
         {
             var packagesConfigPath = $@"..\..\..\XamFormsPerf\XamFormsPerf.{_platform}\packages.config";
             var xml = XDocument.Load(packagesConfigPath);
