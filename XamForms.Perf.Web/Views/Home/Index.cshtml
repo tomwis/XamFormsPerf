@@ -1,0 +1,43 @@
+﻿@model Dictionary<string, List<XamForms.Perf.Web.Controllers.TestTablePoint>>
+@{
+    ViewBag.Title = "Xamarin Forms Performance";
+}
+
+<div class="jumbotron">
+    <h1>Xamarin Forms Performance</h1>
+    <p>Below values are only tests made on Debug builds on emulator and shouldn't be considered as reflection of the real performance.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+
+        @foreach (var item in Model)
+        {
+            <h3>@item.Key</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td style="min-width:80px"><b>Version</b></td>
+                        <td style="min-width:80px"><b>Time [ms]</b></td>
+                        <td><b>Difference</b></td>
+                    </tr>
+                </thead>
+                @foreach (var value in item.Value)
+                {
+                    <tr>
+                        <td>@value.Version</td>
+                        <td>@value.AvgMs</td>
+                        @if (value.DiifFromLast != Double.MaxValue)
+                        {
+                            var positive = value.DiifFromLast >= 0;
+                            <td style="color:@(positive ? "#66ff99" : "#ff6699")">
+                                <b>@(positive ? "+" : "")@(value.DiifFromLast * 100)%</b>
+                            </td>
+                        }   
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>

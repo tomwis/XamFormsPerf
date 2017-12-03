@@ -80,7 +80,8 @@ namespace XamFormsPerf.UITests
                     parts[2].Trim().Replace(" ms", ""), // time in ms
                     _testsDate,
                     _formsVersion,
-                    _targetFramework
+                    _targetFramework,
+                    _platform.ToString()
                 }));
             }
 
@@ -109,7 +110,7 @@ namespace XamFormsPerf.UITests
 
             var (_formsVersion, _targetFramework) = GetFormsVersionAndTarget();
 
-            File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate};{_formsVersion};{_targetFramework}"));
+            File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate};{_formsVersion};{_targetFramework};{_platform}"));
         }
 
         (string, string) GetFormsVersionAndTarget()
