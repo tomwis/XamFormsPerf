@@ -20,6 +20,7 @@ namespace XamFormsPerf.UITests
 
             return ConfigureApp
                 .iOS
+                .InstalledApp("com.yourcompany.XamFormsPerf")
                 .StartApp();
         }
     }

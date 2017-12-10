@@ -23,6 +23,7 @@ namespace XamFormsPerf.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            Xamarin.Calabash.Start();
             PerfLog.MeasureStart("First Page Load");
             PerfLog.Measure("App Init", () => global::Xamarin.Forms.Forms.Init());
             PerfLog.Measure("App Load", () => LoadApplication(new App()));
@@ -33,12 +34,14 @@ namespace XamFormsPerf.iOS
         [Export("exitApp:")]
         public NSString ExitApp(NSString value)
         {
-            Exit(3);
+            Environment.Exit(0);
             return new NSString();
         }
 
-
-        [DllImport("__Internal", EntryPoint = "exit")]
-        public static extern void Exit(int status);
+        [Export("testsSummary:")]
+        public NSString TestsSummary(NSString arg)
+        {
+            return new NSString(PerfLog.Summary());
+        }
     }
 }

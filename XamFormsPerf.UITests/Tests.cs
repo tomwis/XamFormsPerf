@@ -12,7 +12,7 @@ using System.Xml.Linq;
 namespace XamFormsPerf.UITests
 {
     [TestFixture(Platform.Android)]
-    //[TestFixture(Platform.iOS)] // not supported on Windows, will have to do it later
+    [TestFixture(Platform.iOS)]
     public class Tests
     {
         IApp _app;
@@ -37,9 +37,19 @@ namespace XamFormsPerf.UITests
             if(_app != null)
             {
                 if (_platform == Platform.Android)
+                {
                     _app.Invoke("ExitApp");
+                }
                 else
-                    _app.Invoke("exitApp:");
+                {
+                    try
+                    {
+                        _app.Invoke("exitApp:", "");
+                    }
+                    catch(Exception ex)
+                    { 
+                    }
+                }
             }
             _app = AppInitializer.StartApp(_platform);
         }
@@ -66,7 +76,12 @@ namespace XamFormsPerf.UITests
 
         string SaveResults()
         {
-            var summary = _app.Invoke("TestsSummary").ToString();
+            string summary = string.Empty;
+            if (_platform == Platform.Android)
+                summary = _app.Invoke("TestsSummary").ToString();
+            else
+                summary = _app.Invoke("testsSummary:", "").ToString();
+
             var lines = summary.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             List<string> entries = new List<string>();
@@ -126,7 +141,7 @@ namespace XamFormsPerf.UITests
         readonly string _formsVersion, _targetFramework;
         readonly string _resultsFilename, _resultsAvgFilename;
         readonly string _testsDate;
-        const string RESULTS_HEADER = "Test name;Avg ms;Date;FormsVersion;TargetFramework";
+        const string RESULTS_HEADER = "Test name;Avg ms;Date;FormsVersion;TargetFramework;Platform";
         const string RESULTS_FILENAME_TEMPLATE = "results_{0}.csv";
         const string RESULTS_AVERAGE_FILENAME_TEMPLATE = "resultsAvg_{0}.csv";
     }
