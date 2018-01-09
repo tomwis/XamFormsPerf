@@ -17,7 +17,7 @@ namespace XamFormsPerf.UITests
     {
         IApp _app;
         Platform _platform;
-        const int _loops = 3;
+        const int _loops = 10;
         int _currentLoop = 1;
 
         public Tests(Platform platform)
@@ -52,6 +52,7 @@ namespace XamFormsPerf.UITests
                 }
             }
             _app = AppInitializer.StartApp(_platform);
+            _deviceInfo = (_platform == Platform.Android ? _app.Invoke("GetDeviceInfo") : _app.Invoke("getDeviceInfo:")).ToString();
         }
 
         [Test]
@@ -96,7 +97,8 @@ namespace XamFormsPerf.UITests
                     _testsDate,
                     _formsVersion,
                     _targetFramework,
-                    _platform.ToString()
+                    _platform.ToString(),
+                    _deviceInfo
                 }));
             }
 
@@ -122,13 +124,11 @@ namespace XamFormsPerf.UITests
                 };
             }).GroupBy(t => t.Name, g => g.AvgMs).ToDictionary(k => k.Key, v => v.ToList()));
             var avgResults = tests.Select(s => new { Name = s.Key, AvgMs = s.Value.Sum() / s.Value.Count });
-
-            var (_formsVersion, _targetFramework) = GetFormsVersionAndTarget();
-
-            File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate};{_formsVersion};{_targetFramework};{_platform}"));
+            
+            File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate};{_formsVersion};{_targetFramework};{_platform};{_deviceInfo}"));
         }
 
-        (string, string) GetFormsVersionAndTarget()
+        (string formsVersion, string targetFramework) GetFormsVersionAndTarget()
         {
             var packagesConfigPath = $@"..\..\..\XamFormsPerf\XamFormsPerf.{_platform}\packages.config";
             var xml = XDocument.Load(packagesConfigPath);
@@ -138,10 +138,11 @@ namespace XamFormsPerf.UITests
             return (formsVersion, targetFramework);
         }
 
+        string _deviceInfo;
         readonly string _formsVersion, _targetFramework;
         readonly string _resultsFilename, _resultsAvgFilename;
         readonly string _testsDate;
-        const string RESULTS_HEADER = "Test name;Avg ms;Date;FormsVersion;TargetFramework;Platform";
+        const string RESULTS_HEADER = "Test name;Avg ms;Date;FormsVersion;TargetFramework;Platform;Model;OsVersion";
         const string RESULTS_FILENAME_TEMPLATE = "results_{0}.csv";
         const string RESULTS_AVERAGE_FILENAME_TEMPLATE = "resultsAvg_{0}.csv";
     }

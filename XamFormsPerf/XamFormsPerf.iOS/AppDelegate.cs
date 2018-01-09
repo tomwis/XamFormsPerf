@@ -43,5 +43,11 @@ namespace XamFormsPerf.iOS
         {
             return new NSString(PerfLog.Summary());
         }
+
+        [Export("getDeviceInfo:")]
+        public NSString GetDeviceInfo(NSString arg)
+        {
+            return new NSString(DeviceInfo.Get());
+        }
     }
 }

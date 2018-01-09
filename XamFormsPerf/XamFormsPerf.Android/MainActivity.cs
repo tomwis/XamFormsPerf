@@ -39,6 +39,12 @@ namespace XamFormsPerf.Droid
         {
             return PerfLog.Summary();
         }
+
+        [Export("GetDeviceInfo")]
+        public string GetDeviceInfo()
+        {
+            return DeviceInfo.Get();
+        }
     }
 }
 

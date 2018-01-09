@@ -8,19 +8,26 @@ namespace XamFormsPerf.UITests
 {
     public class AppInitializer
     {
+        static readonly string _bundleName = "com.companyname.XamFormsPerf";
+
         public static IApp StartApp(Platform platform)
         {
+            var config = "Release";
+#if DEBUG
+            config = "Debug";
+#endif
+
             if (platform == Platform.Android)
             {
                 return ConfigureApp
                     .Android
-                    .ApkFile(@"..\..\..\XamFormsPerf\XamFormsPerf.Android\bin\Debug\com.companyname.XamFormsPerf.apk")
+                    .ApkFile($@"..\..\..\XamFormsPerf\XamFormsPerf.Android\bin\{config}\{_bundleName}.apk")
                     .StartApp();
             }
 
             return ConfigureApp
                 .iOS
-                .InstalledApp("com.yourcompany.XamFormsPerf")
+                .InstalledApp(_bundleName)
                 .StartApp();
         }
     }
