@@ -8,36 +8,155 @@
     <p>Below values are only tests made on Debug builds on emulator and shouldn't be considered as reflection of the real performance.</p>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
+<div>
+    @{
+        var columns = 3;
+        int i = 0;
+        string neutralColor = "00A7FF"; // blue
+        string positiveColor = "4EED6D"; // green
+        string negativeColor = "FF0053"; // red
 
-        @foreach (var item in Model)
+        foreach (var item in Model)
         {
+            if (i % columns == 0)
+            {
+                @:<div class="row">
+            }
+
+            @:<div class="col-md-4">
+
+
             <h3>@item.Key</h3>
 
-            <table>
-                <thead>
-                    <tr>
-                        <td style="min-width:80px"><b>Version</b></td>
-                        <td style="min-width:80px"><b>Time [ms]</b></td>
-                        <td><b>Difference</b></td>
-                    </tr>
-                </thead>
-                @foreach (var value in item.Value)
+            item.Value.Reverse();
+            var versions = item.Value.Select(s => s.Version);
+            var times = item.Value.Select(s => s.AvgMs);
+            var barBg = item.Value.Select(s => GetDiffColor(s.DiifFromLast, 0.2));
+            var barBorder = item.Value.Select(s => GetDiffColor(s.DiifFromLast, 1));
+            var diffLabels = item.Value.Select(s => GetDiffLabel(s.DiifFromLast)).ToList();
+
+            string GetDiffLabel(double diff)
+            {
+                if (diff == Double.MaxValue)
                 {
-                    <tr>
-                        <td>@value.Version</td>
-                        <td>@value.AvgMs</td>
-                        @if (value.DiifFromLast != Double.MaxValue)
-                        {
-                            var positive = value.DiifFromLast >= 0;
-                            <td style="color:@(positive ? "#66ff99" : "#ff6699")">
-                                <b>@(positive ? "+" : "")@(value.DiifFromLast * 100)%</b>
-                            </td>
-                        }   
-                    </tr>
+                    return string.Empty;
                 }
-            </table>
+
+                var sign = "";
+                if (diff >= 0)
+                {
+                    sign = "-";
+                }
+                else
+                {
+                    sign = "+";
+                }
+
+                var diffStr = (diff * 100).ToString().TrimStart('-');
+
+                return $"({sign}{diffStr}%)";
+            }
+
+            string GetDiffColor(double diff, double alpha)
+            {
+                if (diff == Double.MaxValue)
+                {
+                    return GetJsColor(neutralColor, alpha);
+                }
+
+                if (diff >= 0)
+                {
+                    return GetJsColor(positiveColor, alpha);
+                }
+
+                return GetJsColor(negativeColor, alpha);
+            }
+
+            string GetJsColor(string hex, double alpha)
+            {
+                if (hex.Length != 6) return string.Empty;
+
+                return $"rgba(" +
+                            $"{Convert.ToByte(hex.Substring(0, 2), 16)}, " +
+                            $"{Convert.ToByte(hex.Substring(2, 2), 16)}, " +
+                            $"{Convert.ToByte(hex.Substring(4, 2), 16)}, " +
+                            $"{alpha.ToString(System.Globalization.CultureInfo.InvariantCulture)})";
+            }
+
+            var chartId = item.Key.Replace(" ", "");
+
+            <canvas id="test_chart_@(chartId)" class="test_chart" width="400" height="200"></canvas>
+
+            <script>
+                var diffLabelsJs_@(chartId) = @Html.Raw(Json.Encode(diffLabels));
+                var timesJs_@(chartId) = @Html.Raw(Json.Encode(times));
+
+                var ctx = document.getElementById("test_chart_@(chartId)").getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: @Html.Raw(Json.Encode(versions)),
+                        datasets: [{
+                            label: 'Time [ms]',
+                            data: @Html.Raw(Json.Encode(times)),
+                            backgroundColor: @Html.Raw(Json.Encode(barBg).Replace("\"", "'")),
+                            borderColor: @Html.Raw(Json.Encode(barBorder).Replace("\"", "'")),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Time [ms]'
+                                }
+                            }],
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Version'
+                                }
+                            }]
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: function (tooltipItem, chart) {
+                                    return " " + timesJs_@(chartId)[tooltipItem.index] + " ms " + diffLabelsJs_@(chartId)[tooltipItem.index];
+                                }
+                            }
+                        },
+                        legend: {
+                            display: false
+                        },
+                        plugins: {
+                            datalabels: {
+                                formatter: function (value, context) {
+                                    var diff = diffLabelsJs_@(chartId)[context.dataIndex].replace('(', '').replace(')', '');
+                                    return diff;
+                                },
+                                textAlign: 'center',
+                                font: {
+                                    weight: 'bold'
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+            if (i % columns == columns - 1)
+            {
+                @:</div>
+            }
+
+            @:</div>
+
+
+            ++i;
         }
-    </div>
+    }
 </div>

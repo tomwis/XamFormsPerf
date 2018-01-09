@@ -32,7 +32,6 @@ namespace XamFormsPerf.Droid
         {
             Log.Info("UITest", "Finish");
             FinishAndRemoveTask();
-            //Android.OS.Process.KillProcess(Android.OS.Process.MyPid()); // This kills not only app, but also tests
         }
 
         [Export("TestsSummary")]

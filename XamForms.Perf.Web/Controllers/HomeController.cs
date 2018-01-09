@@ -11,15 +11,17 @@ namespace XamForms.Perf.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string platform)
         {
-            var results = ReadResultsFromFiles();
+            var results = ReadResultsFromFiles(platform);
             var tests = GroupResultsIntoTests(results);
             return View(tests);
         }
 
-        List<TestResult> ReadResultsFromFiles()
+        IEnumerable<TestResult> ReadResultsFromFiles(string targetFramework)
         {
+            if (targetFramework == null) return Enumerable.Empty<TestResult>();
+
             var data = Server.MapPath("~/App_Data/");
             var files = Directory.GetFiles(data, "resultsAvg*.csv");
 
@@ -31,21 +33,24 @@ namespace XamForms.Perf.Web.Controllers
                 {
                     var parts = line.Split(";".ToCharArray());
 
-                    results.Add(new TestResult
+                    if (parts[5].ToLower() == targetFramework.ToLower())
                     {
-                        Name = parts[0],
-                        AvgMs = int.Parse(parts[1]),
-                        Date = DateTime.Parse(parts[2], CultureInfo.InvariantCulture),
-                        Version = Version.Parse(parts[3]),
-                        Target = parts[4]
-                    });
+                        results.Add(new TestResult
+                        {
+                            Name = parts[0],
+                            AvgMs = int.Parse(parts[1]),
+                            Date = DateTime.Parse(parts[2], CultureInfo.InvariantCulture),
+                            Version = Version.Parse(parts[3]),
+                            Target = parts[4]
+                        });
+                    }
                 }
             }
 
             return results;
         }
 
-        Dictionary<string, List<TestTablePoint>> GroupResultsIntoTests(List<TestResult> results)
+        Dictionary<string, List<TestTablePoint>> GroupResultsIntoTests(IEnumerable<TestResult> results)
         {
             Dictionary<string, List<TestTablePoint>> tests = new Dictionary<string, List<TestTablePoint>>();
 
