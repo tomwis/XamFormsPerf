@@ -151,6 +151,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\resultsAvg_2018-01-09_18-47-23-3600.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-09_19-01-40-2217.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-09_21-08-21-1343.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-10_19-42-24-8558.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-10_19-50-53-6221.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-10_19-56-06-3904.csv" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -188,9 +194,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
