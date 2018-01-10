@@ -52,7 +52,7 @@ namespace XamFormsPerf.UITests
                 }
             }
             _app = AppInitializer.StartApp(_platform);
-            _deviceInfo = (_platform == Platform.Android ? _app.Invoke("GetDeviceInfo") : _app.Invoke("getDeviceInfo:")).ToString();
+            _deviceInfo = (_platform == Platform.Android ? _app.Invoke("GetDeviceInfo") : _app.Invoke("getDeviceInfo:", "")).ToString();
         }
 
         [Test]
