@@ -126,6 +126,10 @@ namespace XamFormsPerf.UITests
             var avgResults = tests.Select(s => new { Name = s.Key, AvgMs = s.Value.Sum() / s.Value.Count });
             
             File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate};{_formsVersion};{_targetFramework};{_platform};{_deviceInfo}"));
+
+#if !DEBUG
+            File.Copy(_resultsAvgFilename, Path.Combine(WEB_PROJECT_RELATIVE_PATH, _resultsAvgFilename));
+#endif
         }
 
         (string formsVersion, string targetFramework) GetFormsVersionAndTarget()
@@ -145,6 +149,7 @@ namespace XamFormsPerf.UITests
         const string RESULTS_HEADER = "Test name;Avg ms;Date;FormsVersion;TargetFramework;Platform;Model;OsVersion";
         const string RESULTS_FILENAME_TEMPLATE = "results_{0}.csv";
         const string RESULTS_AVERAGE_FILENAME_TEMPLATE = "resultsAvg_{0}.csv";
+        const string WEB_PROJECT_RELATIVE_PATH = @"..\..\..\XamForms.Perf.Web\App_Data";
     }
 }
 
