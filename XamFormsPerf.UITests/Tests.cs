@@ -24,6 +24,7 @@ namespace XamFormsPerf.UITests
         {
             _platform = platform;
 
+            _webProjectDataRelativePath = Path.Combine("..", "..", "..", "XamForms.Perf.Web", "App_Data");
             _testsDate = DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
             var testTime = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-ffff");
             _resultsFilename = string.Format(RESULTS_FILENAME_TEMPLATE, testTime);
@@ -128,13 +129,13 @@ namespace XamFormsPerf.UITests
             File.AppendAllLines(_resultsAvgFilename, avgResults.Select(s => $"{s.Name};{s.AvgMs};{_testsDate};{_formsVersion};{_targetFramework};{_platform};{_deviceInfo}"));
 
 #if !DEBUG
-            File.Copy(_resultsAvgFilename, Path.Combine(WEB_PROJECT_RELATIVE_PATH, _resultsAvgFilename));
+            File.Copy(_resultsAvgFilename, Path.Combine(_webProjectDataRelativePath, _resultsAvgFilename));
 #endif
         }
 
         (string formsVersion, string targetFramework) GetFormsVersionAndTarget()
         {
-            var packagesConfigPath = $@"..\..\..\XamFormsPerf\XamFormsPerf.{_platform}\packages.config";
+            var packagesConfigPath = Path.Combine("..", "..", "..", "XamFormsPerf", $"XamFormsPerf.{_platform}", "packages.config");
             var xml = XDocument.Load(packagesConfigPath);
             var formsPackage = xml.Root.Elements("package").FirstOrDefault(s => s.Attribute("id").Value == "Xamarin.Forms");
             var formsVersion = formsPackage.Attribute("version").Value;
@@ -143,13 +144,13 @@ namespace XamFormsPerf.UITests
         }
 
         string _deviceInfo;
+        string _webProjectDataRelativePath;
         readonly string _formsVersion, _targetFramework;
         readonly string _resultsFilename, _resultsAvgFilename;
         readonly string _testsDate;
         const string RESULTS_HEADER = "Test name;Avg ms;Date;FormsVersion;TargetFramework;Platform;Model;OsVersion";
         const string RESULTS_FILENAME_TEMPLATE = "results_{0}.csv";
         const string RESULTS_AVERAGE_FILENAME_TEMPLATE = "resultsAvg_{0}.csv";
-        const string WEB_PROJECT_RELATIVE_PATH = @"..\..\..\XamForms.Perf.Web\App_Data";
     }
 }
 

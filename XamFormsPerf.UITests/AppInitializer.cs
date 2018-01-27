@@ -19,9 +19,11 @@ namespace XamFormsPerf.UITests
 
             if (platform == Platform.Android)
             {
+                var apkPath = Path.Combine("..", "..", "..", "XamFormsPerf", "XamFormsPerf.Android", "bin", config, $"{_bundleName}.apk");
+
                 return ConfigureApp
                     .Android
-                    .ApkFile($@"..\..\..\XamFormsPerf\XamFormsPerf.Android\bin\{config}\{_bundleName}.apk")
+                    .ApkFile(apkPath)
                     .StartApp();
             }
 
