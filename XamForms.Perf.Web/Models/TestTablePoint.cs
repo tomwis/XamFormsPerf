@@ -10,5 +10,7 @@ namespace XamForms.Perf.Web.Models
         public string Version { get; set; }
         public int AvgMs { get; set; }
         public double DiifFromLast { get; set; }
+        public string Model { get; set; }
+        public string OsVersion { get; set; }
     }
 }

@@ -12,5 +12,7 @@ namespace XamForms.Perf.Web.Models
         public DateTime Date { get; set; }
         public Version Version { get; set; }
         public string Target { get; set; }
+        public string Model { get; set; }
+        public string OsVersion { get; set; }
     }
 }

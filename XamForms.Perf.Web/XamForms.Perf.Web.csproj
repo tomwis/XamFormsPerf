@@ -168,6 +168,20 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-07-58-3290.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-13-21-6166.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-16-09-3389.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-21-42-0415.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-24-28-3508.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-29-54-6976.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-32-44-9406.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-38-13-6302.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-41-01-0948.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-46-37-1164.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-49-22-0933.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-54-49-8394.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_22-57-36-5131.csv" />
+    <Content Include="App_Data\resultsAvg_2018-01-27_23-03-04-9577.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

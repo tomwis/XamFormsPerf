@@ -41,7 +41,9 @@ namespace XamForms.Perf.Web.Controllers
                             AvgMs = int.Parse(parts[1]),
                             Date = DateTime.Parse(parts[2], CultureInfo.InvariantCulture),
                             Version = Version.Parse(parts[3]),
-                            Target = parts[4]
+                            Target = parts[4],
+                            Model = parts[6],
+                            OsVersion = parts[7]
                         });
                     }
                 }
@@ -73,7 +75,9 @@ namespace XamForms.Perf.Web.Controllers
                     {
                         Version = myGroup[i].Version.ToString(),
                         AvgMs = myGroup[i].AvgMs,
-                        DiifFromLast = diffPercent
+                        DiifFromLast = diffPercent,
+                        Model = myGroup[i].Model,
+                        OsVersion = myGroup[i].OsVersion
                     });
                 }
 

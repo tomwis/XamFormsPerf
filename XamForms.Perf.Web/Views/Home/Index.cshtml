@@ -10,7 +10,7 @@
 
 <div>
     @{
-        var columns = 3;
+        var columns = 2;
         int i = 0;
         string neutralColor = "00A7FF"; // blue
         string positiveColor = "4EED6D"; // green
@@ -23,7 +23,7 @@
                 @:<div class="row">
             }
 
-            @:<div class="col-md-4">
+            @:<div class="col-md-6">
 
 
             <h3>@item.Key</h3>
@@ -34,6 +34,13 @@
             var barBg = item.Value.Select(s => GetDiffColor(s.DiifFromLast, 0.2));
             var barBorder = item.Value.Select(s => GetDiffColor(s.DiifFromLast, 1));
             var diffLabels = item.Value.Select(s => GetDiffLabel(s.DiifFromLast)).ToList();
+            var models = item.Value.Select(s => s.Model);
+            var osVersions = item.Value.Select(s => s.OsVersion);
+
+            if(models.Distinct().Count() > 1 || osVersions.Distinct().Count() > 1)
+            {
+                <p><small>Not all test were made on the same device or system version. Hover on columns to get more details.</small></p>
+            }
 
             string GetDiffLabel(double diff)
             {
@@ -90,6 +97,8 @@
             <script>
                 var diffLabelsJs_@(chartId) = @Html.Raw(Json.Encode(diffLabels));
                 var timesJs_@(chartId) = @Html.Raw(Json.Encode(times));
+                var modelsJs_@(chartId) = @Html.Raw(Json.Encode(models));
+                var osVersionsJs_@(chartId) = @Html.Raw(Json.Encode(osVersions));
 
                 var ctx = document.getElementById("test_chart_@(chartId)").getContext('2d');
                 var myChart = new Chart(ctx, {
@@ -118,14 +127,16 @@
                             xAxes: [{
                                 scaleLabel: {
                                     display: true,
-                                    labelString: 'Version'
+                                    labelString: 'Xamarin.Forms Version'
                                 }
                             }]
                         },
                         tooltips: {
                             callbacks: {
                                 label: function (tooltipItem, chart) {
-                                    return " " + timesJs_@(chartId)[tooltipItem.index] + " ms " + diffLabelsJs_@(chartId)[tooltipItem.index];
+                                    var time = " " + timesJs_@(chartId)[tooltipItem.index] + " ms " + diffLabelsJs_@(chartId)[tooltipItem.index];
+                                    var device = modelsJs_@(chartId)[tooltipItem.index] + " (" + osVersionsJs_@(chartId)[tooltipItem.index] + ")";
+                                    return time + "  |  " + device;
                                 }
                             }
                         },
