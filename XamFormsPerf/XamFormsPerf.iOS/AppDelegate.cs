@@ -47,7 +47,7 @@ namespace XamFormsPerf.iOS
         [Export("getDeviceInfo:")]
         public NSString GetDeviceInfo(NSString arg)
         {
-            return new NSString(DeviceInfo.Get());
+            return new NSString($"{Xamarin.iOS.DeviceHardware.Model};{Plugin.DeviceInfo.CrossDeviceInfo.Current.Version}");
         }
     }
 }
