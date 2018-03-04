@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:ListViewBasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamFormsPerf.Pages.ListView"
+             xmlns:customControls="clr-namespace:XamFormsPerf.CustomControls"
+             x:Class="XamFormsPerf.Pages.ListView.ListViewExtendedViewCellTest"
+             BackgroundColor="LightGray">
+  <customControls:CustomListView x:Name="List1" RowHeight="162" SeparatorVisibility="None">
+    <customControls:CustomListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <Grid BackgroundColor="#fafafa">
+            <Grid Margin="12" Padding="12" BackgroundColor="{Binding Background}">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+
+              <BoxView Grid.RowSpan="3" VerticalOptions="Fill" HorizontalOptions="Start" WidthRequest="5" BackgroundColor="{Binding StatusColor}" Margin="-12,-12,0,-12"/>
+
+              <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                <Image Source="{Binding IconTitle}" WidthRequest="24" HeightRequest="24"/>
+                <Label Text="{Binding Title}" FontSize="24" VerticalOptions="Center"/>
+              </StackLayout>
+              <Label Grid.Row="1" Grid.Column="1" Text="{Binding Description}" />
+
+              <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                <Image Source="{Binding StatusIcon}" WidthRequest="24" HeightRequest="24" VerticalOptions="Center"/>
+                <Label Text="{Binding Date}" VerticalOptions="Center"/>
+              </StackLayout>
+
+              <StackLayout Grid.RowSpan="3" Grid.Column="2">
+                <StackLayout Orientation="Horizontal" BackgroundColor="{Binding Status1Color}" Padding="3,0" HeightRequest="24">
+                  <Image Source="{Binding Status1Icon}" WidthRequest="16" HeightRequest="16" VerticalOptions="Center"/>
+                  <Label Text="{Binding Status1Label}" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" BackgroundColor="{Binding Status2Color}" Padding="3,0" HeightRequest="24">
+                  <Image Source="{Binding Status2Icon}" WidthRequest="16" HeightRequest="16" VerticalOptions="Center"/>
+                  <Label Text="{Binding Status2Label}" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" BackgroundColor="{Binding Status3Color}" Padding="3,0" HeightRequest="24">
+                  <Image Source="{Binding Status3Icon}" WidthRequest="16" HeightRequest="16" VerticalOptions="Center"/>
+                  <Label Text="{Binding Status3Label}" VerticalOptions="Center" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" BackgroundColor="{Binding Status4Color}" Padding="3,0" HeightRequest="24">
+                  <Image Source="{Binding Status4Icon}" WidthRequest="16" HeightRequest="16" VerticalOptions="Center"/>
+                  <Label Text="{Binding Status4Label}" VerticalOptions="Center" />
+                </StackLayout>
+              </StackLayout>
+
+              <StackLayout Grid.RowSpan="3" Grid.Column="3">
+                <Image Source="{Binding Icon1}" WidthRequest="24" HeightRequest="24"/>
+                <Image Source="{Binding Icon2}" WidthRequest="24" HeightRequest="24"/>
+                <Image Source="{Binding Icon3}" WidthRequest="24" HeightRequest="24"/>
+                <Image Source="{Binding Icon4}" WidthRequest="24" HeightRequest="24"/>
+              </StackLayout>
+
+            </Grid>
+          </Grid>
+        </ViewCell>
+      </DataTemplate>
+    </customControls:CustomListView.ItemTemplate>
+  </customControls:CustomListView>
+</local:ListViewBasePage>

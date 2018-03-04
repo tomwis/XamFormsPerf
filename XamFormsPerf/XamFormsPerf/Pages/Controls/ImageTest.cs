@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace XamFormsPerf.Pages
+namespace XamFormsPerf.Pages.Controls
 {
     class ImageTest : ControlTestBase<Image>
     {

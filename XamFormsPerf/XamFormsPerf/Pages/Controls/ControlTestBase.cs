@@ -5,14 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace XamFormsPerf.Pages
+namespace XamFormsPerf.Pages.Controls
 {
-    public partial class ControlTestBase<TControl> : ContentPage where TControl : View
+    public partial class ControlTestBase<TControl> : BasePage where TControl : View
     {
         const int _childCount = 200;
-        readonly bool _automated;
 
-        public ControlTestBase(bool automated)
+        public ControlTestBase(bool automated) : base(automated)
         {
             var panel = new StackLayout();
             Content = new ScrollView
@@ -23,19 +22,6 @@ namespace XamFormsPerf.Pages
             for (int i = 0; i < _childCount; ++i)
             {
                 panel.Children.Add(CreateView());
-            }
-
-            _automated = automated;
-        }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            PerfLog.MeasureStop(GetType().Name);
-
-            if (_automated)
-            {
-                await Navigation.PopAsync();
             }
         }
 

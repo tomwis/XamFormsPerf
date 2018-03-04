@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using XamFormsPerf.Pages.Controls;
+using XamFormsPerf.Pages.ListView;
 
 namespace XamFormsPerf.Pages
 {
@@ -18,7 +20,13 @@ namespace XamFormsPerf.Pages
             typeof(BoxViewTest),
             typeof(LabelTest),
             typeof(ButtonTest),
-            typeof(ImageTest)
+            typeof(ImageTest),
+            typeof(ListViewTextCellTest),
+            typeof(ListViewImageCellTest),
+            typeof(ListViewEntryCellTest),
+            typeof(ListViewSwitchCellTest),
+            typeof(ListViewSimpleViewCellTest),
+            typeof(ListViewExtendedViewCellTest),
         };
 
         public MainPage()
