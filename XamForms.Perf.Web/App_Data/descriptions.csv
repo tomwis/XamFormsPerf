@@ -1,0 +1,18 @@
+App Init;App Init;Xamarin.Forms.Forms.Init() function time
+App Load;App Load;LoadApplication() function time
+First Page Load;First Page Load;Time from app start (before Xamarin.Forms.Forms.Init()) to first page load (OnAppearing())
+BoxViewTest;Control - BoxView;Loading 200 BoxViews
+LabelTest;Control - Label;Loading 200 Labels
+ButtonTest;Control - Button;Loading 200 Buttons
+ImageTest;Control - Image;Loading 200 Images
+NestedStackLayoutTest;Layout - StackLayout;Nested Stacklayouts
+NestedGridLikeStackLayoutTest;Layout - StackLayout;Nested StackLayouts in a grid like manner (layout similar to grid layouts from next tests)
+NestedGridStarSizeTest;Layout - Grid with * sizes;Nested Grid layouts with Columns and Rows as * only
+NestedGridAutoSizeTest;Layout - Grid with Auto sizes;Nested Grid layouts with Columns and Rows as Auto only
+NestedGridConstSizeTest;Layout - Grid with constant sizes;Nested Grid layouts with Columns and Rows as constant sizes only
+ListViewTextCellTest;Control - ListView with TextCell;Loading ListView with TextCells and scrolling through 200 items
+ListViewImageCellTest;Control - ListView with ImageCell;Loading ListView with ImageCells and scrolling through 200 items
+ListViewEntryCellTest;Control - ListView with EntryCell;Loading ListView with EntryCells and scrolling through 200 items
+ListViewSwitchCellTest;Control - ListView with SwitchCell;Loading ListView with SwitchCells and scrolling through 200 items
+ListViewSimpleViewCellTest;Control - ListView with simple ViewCell;Loading ListView with simple ViewCells and scrolling through 200 items
+ListViewExtendedViewCellTest;Control - ListView with complex ViewCell;Loading ListView with complex ViewCells and scrolling through 200 items

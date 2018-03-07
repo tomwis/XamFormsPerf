@@ -7,7 +7,9 @@ namespace XamForms.Perf.Web.Models
 {
     public class TestResult
     {
+        public string Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public int AvgMs { get; set; }
         public DateTime Date { get; set; }
         public Version Version { get; set; }

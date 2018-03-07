@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using XamFormsPerf.Pages.Controls;
+using XamFormsPerf.Pages.Layouts;
+using XamFormsPerf.Pages.ListView;
 
 namespace XamFormsPerf.Pages
 {
@@ -15,10 +18,26 @@ namespace XamFormsPerf.Pages
         int _currentTest = 0;
         List<Type> _tests = new List<Type>
         {
+            // Controls
             typeof(BoxViewTest),
             typeof(LabelTest),
             typeof(ButtonTest),
-            typeof(ImageTest)
+            typeof(ImageTest),
+
+            // Layouts
+            typeof(NestedStackLayoutTest),
+            typeof(NestedGridLikeStackLayoutTest),
+            typeof(NestedGridStarSizeTest),
+            typeof(NestedGridAutoSizeTest),
+            typeof(NestedGridConstSizeTest),
+
+            // ListView
+            typeof(ListViewTextCellTest),
+            typeof(ListViewImageCellTest),
+            typeof(ListViewEntryCellTest),
+            typeof(ListViewSwitchCellTest),
+            typeof(ListViewSimpleViewCellTest),
+            typeof(ListViewExtendedViewCellTest),
         };
 
         public MainPage()

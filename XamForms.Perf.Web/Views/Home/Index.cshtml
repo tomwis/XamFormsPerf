@@ -1,4 +1,4 @@
-﻿@model Dictionary<string, List<XamForms.Perf.Web.Models.TestTablePoint>>
+﻿@model Dictionary<XamForms.Perf.Web.Models.TestMetadata, List<XamForms.Perf.Web.Models.TestTablePoint>>
 @{
     ViewBag.Title = "Xamarin Forms Performance";
 }
@@ -26,7 +26,8 @@
             @:<div class="col-md-6">
 
 
-            <h3>@item.Key</h3>
+            <h3>@item.Key.Name</h3>
+            <p>@item.Key.Description</p>
 
             item.Value.Reverse();
             var versions = item.Value.Select(s => s.Version);
@@ -90,7 +91,7 @@
                             $"{alpha.ToString(System.Globalization.CultureInfo.InvariantCulture)})";
             }
 
-            var chartId = item.Key.Replace(" ", "");
+            var chartId = item.Key.Id.Replace(" ", "");
 
             <canvas id="test_chart_@(chartId)" class="test_chart" width="400" height="200"></canvas>
 

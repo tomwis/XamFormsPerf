@@ -38,12 +38,49 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\CustomListView.cs" />
+    <Compile Include="CustomControls\ICustomListView.cs" />
     <Compile Include="DeviceInfo.cs" />
-    <Compile Include="Pages\BoxViewTest.cs" />
-    <Compile Include="Pages\ImageTest.cs" />
-    <Compile Include="Pages\ControlTestBase.cs" />
-    <Compile Include="Pages\ButtonTest.cs" />
-    <Compile Include="Pages\LabelTest.cs" />
+    <Compile Include="Pages\Controls\BoxViewTest.cs" />
+    <Compile Include="Pages\Controls\ImageTest.cs" />
+    <Compile Include="Pages\Controls\ControlTestBase.cs" />
+    <Compile Include="Pages\Controls\ButtonTest.cs" />
+    <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\Controls\LabelTest.cs" />
+    <Compile Include="Pages\Layouts\NestedGridStarSizeTest.xaml.cs">
+      <DependentUpon>NestedGridStarSizeTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Layouts\NestedGridAutoSizeTest.xaml.cs">
+      <DependentUpon>NestedGridAutoSizeTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Layouts\NestedGridConstSizeTest.xaml.cs">
+      <DependentUpon>NestedGridConstSizeTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Layouts\NestedGridLikeStackLayoutTest.xaml.cs">
+      <DependentUpon>NestedGridLikeStackLayoutTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Layouts\NestedStackLayoutTest.xaml.cs">
+      <DependentUpon>NestedStackLayoutTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListView\ListViewBasePage.cs" />
+    <Compile Include="Pages\ListView\ListViewExtendedViewCellTest.xaml.cs">
+      <DependentUpon>ListViewExtendedViewCellTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListView\ListViewSimpleViewCellTest.xaml.cs">
+      <DependentUpon>ListViewSimpleViewCellTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListView\ListViewSwitchCellTest.xaml.cs">
+      <DependentUpon>ListViewSwitchCellTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListView\ListViewImageCellTest.xaml.cs">
+      <DependentUpon>ListViewImageCellTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListView\ListViewEntryCellTest.xaml.cs">
+      <DependentUpon>ListViewEntryCellTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ListView\ListViewTextCellTest.xaml.cs">
+      <DependentUpon>ListViewTextCellTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -79,6 +116,72 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ListView\ListViewTextCellTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ListView\ListViewImageCellTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ListView\ListViewEntryCellTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ListView\ListViewSwitchCellTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ListView\ListViewSimpleViewCellTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\ListView\ListViewExtendedViewCellTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Layouts\NestedStackLayoutTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Layouts\NestedGridConstSizeTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Layouts\NestedGridAutoSizeTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Layouts\NestedGridStarSizeTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Layouts\NestedGridLikeStackLayoutTest.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.5.0.91635\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

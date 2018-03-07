@@ -24,6 +24,7 @@ namespace XamForms.Perf.Web.Controllers
 
             var data = Server.MapPath("~/App_Data/");
             var files = Directory.GetFiles(data, "resultsAvg*.csv");
+            var descriptions = GetDescriptions(data);
 
             List<TestResult> results = new List<TestResult>();
             foreach (var file in files)
@@ -32,12 +33,15 @@ namespace XamForms.Perf.Web.Controllers
                 foreach (var line in lines)
                 {
                     var parts = line.Split(";".ToCharArray());
+                    var metadata = descriptions.FirstOrDefault(s => s.Id == parts[0]);                    
 
                     if (parts[5].ToLower() == targetFramework.ToLower())
                     {
                         results.Add(new TestResult
                         {
-                            Name = parts[0],
+                            Id = metadata.Id,
+                            Name = metadata.Name,
+                            Description = metadata.Description,
                             AvgMs = int.Parse(parts[1]),
                             Date = DateTime.Parse(parts[2], CultureInfo.InvariantCulture),
                             Version = Version.Parse(parts[3]),
@@ -52,11 +56,23 @@ namespace XamForms.Perf.Web.Controllers
             return results;
         }
 
-        Dictionary<string, List<TestTablePoint>> GroupResultsIntoTests(IEnumerable<TestResult> results)
+        IEnumerable<TestMetadata> GetDescriptions(string dataPath)
         {
-            Dictionary<string, List<TestTablePoint>> tests = new Dictionary<string, List<TestTablePoint>>();
+            var descriptions = System.IO.File.ReadLines(Path.Combine(dataPath, "descriptions.csv"));
 
-            var groups = results.GroupBy(s => s.Name);
+            return descriptions.Select(s =>
+            {
+                var parts = s.Split(';');
+
+                return new TestMetadata(parts[0], parts[1], parts[2]);
+            });
+        }
+
+        Dictionary<TestMetadata, List<TestTablePoint>> GroupResultsIntoTests(IEnumerable<TestResult> results)
+        {
+            var tests = new Dictionary<TestMetadata, List<TestTablePoint>>();
+
+            var groups = results.GroupBy(s => s.Id);
 
             foreach (var group in groups)
             {
@@ -77,11 +93,13 @@ namespace XamForms.Perf.Web.Controllers
                         AvgMs = myGroup[i].AvgMs,
                         DiifFromLast = diffPercent,
                         Model = myGroup[i].Model,
-                        OsVersion = myGroup[i].OsVersion
+                        OsVersion = myGroup[i].OsVersion,
+                        Description = myGroup[i].Description
                     });
                 }
 
-                tests.Add(group.Key, items);
+                var testResultGroup = myGroup.First();
+                tests.Add(new TestMetadata(testResultGroup.Id, testResultGroup.Name, testResultGroup.Description), items);
             }
 
             return tests;

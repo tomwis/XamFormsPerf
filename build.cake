@@ -11,7 +11,7 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var formsVersions = Argument("formsVersions", "2.4.0.280;2.4.0.18342;2.4.0.38779;2.4.0.74863;2.5.0.77107;2.5.0.121934;2.5.0.122203");
+var formsVersions = Argument("formsVersions", "2.4.0.280;2.4.0.282;2.4.0.18342;2.4.0.38779;2.4.0.74863;2.4.0.91020;2.5.0.77107;2.5.0.91635;2.5.0.121934;2.5.0.122203;2.5.0.280555");
 var currentFormsVersion = "";
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -167,17 +167,29 @@ Task("uitests-loop")
         }
         else
         {
+            Information($"");
+            Information($"=====================================");
             Information($"Tests will run with each version from formsVersions arguemnt: {formsVersions}.");
+            Information($"=====================================");
+            Information($"");
 
             var versions = formsVersions.Split(";".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
+            Information($"");
+            Information($"=====================================");
             Information($"Forms versions count: {versions.Length}.");
+            Information($"=====================================");
+            Information($"");
 
             for(int i = 0; i < versions.Length; ++i)
             {
                 currentFormsVersion = versions[i];
 
+                Information($"");
+                Information($"=====================================");
                 Information($"Starting tasks for forms version: {currentFormsVersion}.");
+                Information($"=====================================");
+                Information($"");
 
                 RunTarget("replace-forms-version");
                 RunTarget("uitests-android");
