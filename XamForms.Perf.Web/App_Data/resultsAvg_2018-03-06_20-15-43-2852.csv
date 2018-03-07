@@ -1,0 +1,18 @@
+App Init;140;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+App Load;615;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+First Page Load;1040;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+BoxViewTest;317;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+LabelTest;407;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+ButtonTest;959;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+ImageTest;705;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+NestedStackLayoutTest;961;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+NestedGridLikeStackLayoutTest;1625;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+NestedGridStarSizeTest;2859;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+NestedGridAutoSizeTest;4143;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+NestedGridConstSizeTest;2589;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+ListViewTextCellTest;3896;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+ListViewImageCellTest;4799;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+ListViewEntryCellTest;4136;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+ListViewSwitchCellTest;4676;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+ListViewSimpleViewCellTest;6729;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1
+ListViewExtendedViewCellTest;22455;03/06/2018 19:15:43;2.5.0.121934;monoandroid71;Android;SM-G900F;6.0.1

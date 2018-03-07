@@ -1,0 +1,18 @@
+App Init;15;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+App Load;45;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+First Page Load;256;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+BoxViewTest;623;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+LabelTest;663;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+ButtonTest;757;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+ImageTest;777;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+NestedStackLayoutTest;245;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+NestedGridLikeStackLayoutTest;241;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+NestedGridStarSizeTest;231;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+NestedGridAutoSizeTest;366;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+NestedGridConstSizeTest;211;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+ListViewTextCellTest;444;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+ListViewImageCellTest;875;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+ListViewEntryCellTest;585;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+ListViewSwitchCellTest;1118;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+ListViewSimpleViewCellTest;997;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6
+ListViewExtendedViewCellTest;2687;03/06/2018 17:38:45;2.4.0.280;xamarinios10;iOS;iPhone 6S;11.2.6

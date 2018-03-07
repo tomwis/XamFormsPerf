@@ -59,7 +59,7 @@ namespace XamFormsPerf.UITests
         [Test]
         public void AppLaunches()
         {
-            _app.WaitForElement("FinishedTestsId");
+            _app.WaitForElement("FinishedTestsId", timeout: TimeSpan.FromMinutes(10));
 
             var summary = SaveResults();
 
