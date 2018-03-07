@@ -146,6 +146,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TestMetadata.cs" />
     <Compile Include="Models\TestResult.cs" />
     <Compile Include="Models\TestTablePoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,6 +185,7 @@
     <Content Include="App_Data\resultsAvg_2018-03-06_22-10-22-7671.csv" />
     <Content Include="App_Data\resultsAvg_2018-03-06_22-15-39-0996.csv" />
     <Content Include="App_Data\resultsAvg_2018-03-06_22-33-02-1299.csv" />
+    <Content Include="App_Data\descriptions.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -221,7 +223,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <PropertyGroup>
