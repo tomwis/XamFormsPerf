@@ -151,12 +151,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\resultsAvg_2018-01-09_18-47-23-3600.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-09_19-01-40-2217.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-09_21-08-21-1343.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-10_19-42-24-8558.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-10_19-50-53-6221.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-10_19-56-06-3904.csv" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -168,20 +162,28 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-07-58-3290.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-13-21-6166.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-16-09-3389.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-21-42-0415.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-24-28-3508.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-29-54-6976.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-32-44-9406.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-38-13-6302.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-41-01-0948.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-46-37-1164.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-49-22-0933.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-54-49-8394.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_22-57-36-5131.csv" />
-    <Content Include="App_Data\resultsAvg_2018-01-27_23-03-04-9577.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_18-21-41-7786.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_18-38-45-7642.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_18-48-00-0413.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_19-04-43-0846.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_19-10-02-1182.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_19-26-39-0378.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_19-31-53-9718.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_19-48-17-5331.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_19-53-32-9805.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_20-10-28-2423.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_20-15-43-2852.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_20-32-07-5570.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_20-37-24-0498.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_20-54-07-1122.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_20-59-25-3386.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_21-16-08-6377.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_21-32-16-5921.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_21-48-31-9396.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_21-53-49-0550.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_22-10-22-7671.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_22-15-39-0996.csv" />
+    <Content Include="App_Data\resultsAvg_2018-03-06_22-33-02-1299.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
